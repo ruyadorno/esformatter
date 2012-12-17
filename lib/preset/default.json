@@ -1,6 +1,7 @@
 {
     "indent" : {
         "value" : "    ",
+        "ArrayExpression" : 1,
         "DoWhileStatement" : 1,
         "ForStatement" : 1,
         "FunctionDeclaration" : 1,
