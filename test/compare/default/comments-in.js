@@ -1,8 +1,8 @@
         // line comment, no indent
 
 /*
- * block comment, no indent
- */
+ block comment, no indent
+*/
 if (true) {
 // line comment, 1 indent
 /*
