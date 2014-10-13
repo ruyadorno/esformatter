@@ -67,13 +67,17 @@ h1 {
   margin: 0;
   position: absolute;
   top: 90px;
-  bottom: 0;
+  bottom: 0px;
   left: 0;
   width: 50%;
 }
 
 #editor-result {
   left: 50%;
+}
+
+.esf-opts {
+  display: none;
 }
 
 /* ==========================================================================

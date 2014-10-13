@@ -13,6 +13,7 @@
     "tests"
   ],
   "dependencies": {
-    "react": "~0.11.2"
+    "jquery": "~2.1.1",
+    "ace-builds": "~1.1.7"
   }
 }

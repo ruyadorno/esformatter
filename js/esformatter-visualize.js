@@ -1,15 +1,14 @@
-(function (window, document) {
+(function ($, input, output) {
 
 "use strict";
 
 var customOptions = { preset: "default" };
-var $input = $("#input");
-var $output = $("#output");
+var $input = input;
+var $output = output;
 
 function init()
 {
-	$input.on("keydown", onCodeKeydown);
-	$("#format").on("click", onFormatClick);
+	$input.on("change", onCodeKeydown);
 	$("#options")
 		.on("change", "input", onOptionChange)
 		.on("click", ".options-group-title", onOptionsGroupToggle);
@@ -18,6 +17,7 @@ function init()
 
 	createPresets();
 	updateOptions();
+	format();
 }
 
 function updateOptions()
@@ -130,9 +130,15 @@ function cleanCustomOptions()
 
 function format()
 {
-	$output.text(
-		esformatter.format($input.val(), customOptions)
-	);
+	console.log('format');
+  var newValue;
+  try {
+    newValue = esformatter.format($input.getValue(), customOptions);
+  } catch (e) {
+    newValue = '// An error occurred while trying to run esformatter';
+  }
+	$output.setValue(newValue);
+  $output.clearSelection();
 }
 
 /*
@@ -187,27 +193,11 @@ function onOptionsGroupToggle(ev)
 
 function onCodeKeydown(ev)
 {
-	// simple keydown handler to support tabs
-	var keyCode = ev.keyCode || ev.which;
-	if (keyCode !== 9)
-		return;
 
-	// get caret position/selection
-	var start = this.selectionStart;
-	var end = this.selectionEnd;
+  console.log('onCodeKeydown');
 
-	// set textarea value to: text before caret + tab + text after caret
-	var value = this.value;
-	this.value =
-		value.substring(0, start) +
-		"\t" +
-		value.substring(end);
+	format();
 
-	// put caret at right position again (add one for the tab)
-	this.selectionStart = this.selectionEnd = start + 1;
-
-	// prevent the focus lose
-	ev.preventDefault();
 }
 
 function onFormatClick(ev)
@@ -273,4 +263,5 @@ function unescapeBackslash(s)
 
 init();
 
-}(window, document));
+}(window.jQuery, window.inputEditor, window.outputEditor));
+

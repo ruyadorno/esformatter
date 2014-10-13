@@ -1,4 +1,4 @@
-(function (React, ace) {
+(function (global, ace) {
 
   'use strict';
 
@@ -10,5 +10,8 @@
   editorResult.setTheme("ace/theme/twilight");
   editorResult.getSession().setMode("ace/mode/javascript");
 
-})(window.React, window.ace);
+  global.inputEditor = editor;
+  global.outputEditor = editorResult;
+
+})(window, window.ace);
 
