@@ -68,7 +68,7 @@ function buildTree(options, path)
 			if (type === "string")
 				v = escapeBackslash(v);
 
-			var $input = $("<input />", {
+			var $inputField = $("<input />", {
 				value: getCustomOptionValue(innerPath),
 				placeholder: v,
 				type: "text",
@@ -78,7 +78,7 @@ function buildTree(options, path)
 			});
 
 			var $label = $("<label />").text(name + ": ")
-				.append($input);
+				.append($inputField);
 
 			$option.append($label);
 		}
@@ -86,7 +86,7 @@ function buildTree(options, path)
 		{
 			$option
 				.addClass("options-group")
-				.append("<span class='options-group-title'><b>v</b>" + name + "</span>")
+				.append("<span class='options-group-title'><b>&#x25BE;</b> " + name + "</span>")
 				.append(buildTree(v, innerPath));
 		}
 		$group.append($option);
@@ -186,15 +186,13 @@ function onOptionChange()
 function onOptionsGroupToggle(ev)
 {
 	var toggleElement = this.firstElementChild;
-	var hide = toggleElement.textContent.substr(0, 1) === "v";
-	toggleElement.textContent = hide ? ">" : "v";
+	var hide = toggleElement.textContent.substr(0, 1) === "▾";
+	toggleElement.textContent = hide ? "▸" : "▾";
 	this.nextElementSibling.style.display = hide ? "none" : "";
 }
 
 function onCodeKeydown(ev)
 {
-
-  console.log('onCodeKeydown');
 
 	format();
 
@@ -208,8 +206,12 @@ function onFormatClick(ev)
 
 function onImportScript(ev)
 {
+	console.log('onImportScript');
+	console.log(this.files[0]);
 	readFile(this.files[0], function(t) {
-		$input.val(t);
+    $input.setValue(t);
+    $input.clearSelection();
+    format();
 	});
 }
 
