@@ -13,6 +13,11 @@ html {
     line-height: 1.4;
 }
 
+body {
+  background: #242424;
+  color: #DDD;
+}
+
 ::-moz-selection {
     background: #b3d4fc;
     text-shadow: none;
@@ -53,19 +58,23 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+h1 {
+  margin-left: 40px;
+}
 
+#editor, #editor-result {
+  border-top: 1px solid #000;
+  margin: 0;
+  position: absolute;
+  top: 90px;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+}
 
-
-
-
-
-
-
-
-
-
-
-
+#editor-result {
+  left: 50%;
+}
 
 /* ==========================================================================
    Media Queries
